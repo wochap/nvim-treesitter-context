@@ -25,6 +25,7 @@ nvim-treesitter/parser/%.so: nvim-treesitter $(NEOVIM)
 			   -c "q"
 
 export VIMRUNTIME=$(PWD)/$(NEOVIM)/runtime
+export TEST_COLORS=1
 
 .PHONY: test
 test: $(NEOVIM) nvim-treesitter \
