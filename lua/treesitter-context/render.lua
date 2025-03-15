@@ -557,4 +557,8 @@ function M.close(winid)
   window_contexts[winid] = nil
 end
 
+function M.get_window_contexts()
+  return window_contexts
+end
+
 return M
