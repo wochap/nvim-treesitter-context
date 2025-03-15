@@ -523,8 +523,17 @@ function M.open(winid, ctx_ranges, ctx_lines, force_hl_update)
   if changed or force_hl_update then
     -- Update highlights
     api.nvim_buf_clear_namespace(ctx_bufnr, -1, 0, -1)
-    highlight_contexts(bufnr, ctx_bufnr, ctx_ranges)
-    copy_extmarks(bufnr, ctx_bufnr, ctx_ranges)
+    if config.enable_hl then
+      highlight_contexts(bufnr, ctx_bufnr, ctx_ranges)
+      copy_extmarks(bufnr, ctx_bufnr, ctx_ranges)
+    else
+      copy_option('tabstop', bufnr, ctx_bufnr)
+      copy_option('shiftwidth', bufnr, ctx_bufnr)
+      copy_option('softtabstop', bufnr, ctx_bufnr)
+      copy_option('expandtab', bufnr, ctx_bufnr)
+      vim.bo[ctx_bufnr]['filetype'] = 'treesitter_context'
+      vim.bo[ctx_bufnr]['buftype'] = ''
+    end
     highlight_bottom(ctx_bufnr, win_height - 1, 'TreesitterContextBottom')
     horizontal_scroll_contexts(winid, window_context.context_winid)
   end
