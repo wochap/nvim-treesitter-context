@@ -546,4 +546,8 @@ function M.close(winid)
   end
 end
 
+function M.get_window_contexts()
+  return window_contexts
+end
+
 return M
