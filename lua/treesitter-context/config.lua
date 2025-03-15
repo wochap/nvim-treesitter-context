@@ -56,6 +56,7 @@ local default_config = {
   trim_scope = 'outer',
   zindex = 20,
   mode = 'cursor',
+  enable_hl = true,
 }
 
 local config = vim.deepcopy(default_config)
